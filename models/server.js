@@ -6,7 +6,10 @@ class Server {
     constructor() {
         //Inicializamos express
         this.app = express();
-        this.port = process.env.PORT
+        this.port = process.env.PORT;
+        //Configuracion del socket io
+        this.server = require('http').createServer(this.app);
+        this.io = require('socket.io')(this.server);
 
         this.path = {}
 
@@ -34,7 +37,13 @@ class Server {
     }
 
     listen() {
-        this.app.listen(this.port, () => {
+        //Server express
+        // this.app.listen(this.port, () => {
+        //     console.log("Servidor Corriendo", this.port);
+        // })
+
+        //Server Socket
+        this.server.listen(this.port, () => {
             console.log("Servidor Corriendo", this.port);
         })
     }
