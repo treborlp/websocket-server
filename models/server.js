@@ -18,6 +18,8 @@ class Server {
 
         //Rutas de la aplicacion
         this.routes();
+        //Ejecutamos los sockets
+        this.sockets()
     }
 
 
@@ -34,6 +36,15 @@ class Server {
         //Importamos las rutas
         // this.app.use(this.path.auth, require("../routes/login"));
 
+    }
+
+    sockets() {
+        this.io.on('connection', socket => {
+            console.log("Cliente conectado", socket.id);
+            socket.on('disconnect', () => {
+                console.log('Cliente desconectado');
+            })
+        });
     }
 
     listen() {
