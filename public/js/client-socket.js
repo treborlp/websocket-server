@@ -17,6 +17,9 @@ socket.on('disconnect', () => { //Ayuda a asaber cuando se conecta al servidor
     lblOffline.style.display = ''
     lblOnline.style.display = 'none'
 })
+socket.on('enviar-mensaje', (payload) => {
+    console.log(payload);
+})
 
 btnEnviar.addEventListener('click', () => {
     const mensaje = txtMensaje.value;
